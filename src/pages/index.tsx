@@ -24,6 +24,29 @@ const index = () => {
       <Divider />
       <Wrap py="3">
         <WrapItem>
+          <Link href="/ssr">
+            <LinkBox
+              as="article"
+              maxW="sm"
+              p="5"
+              borderWidth="1px"
+              rounded="md"
+            >
+              <Heading size="md" my="2">
+                <LinkOverlay href="#">
+                  <Code p="1">getServerSideProps</Code> example:
+                </LinkOverlay>
+              </Heading>
+              <Text>
+                If you export a function called{" "}
+                <Code p="1">getServerSideProps</Code> (Server-Side Rendering)
+                from a page, Next.js will pre-render this page on each request
+                using the data returned by getServerSideProps.
+              </Text>
+            </LinkBox>
+          </Link>
+        </WrapItem>
+        <WrapItem>
           <Link href="/ssg">
             <LinkBox
               as="article"

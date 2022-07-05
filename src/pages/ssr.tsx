@@ -1,5 +1,6 @@
 import { Code, Container, Text, Wrap, WrapItem } from "@chakra-ui/react";
 import type { GetServerSideProps } from "next";
+import Link from "next/link";
 
 type Props = {
   emojis: EmojiT[];
@@ -25,16 +26,19 @@ export default function Home({ emojis }: Props) {
       <Wrap p="5">
         {emojis.map((item) => (
           <WrapItem as="span" key={item.name}>
-            <Code
-              p="1"
-              m="1"
-              w="35px"
-              h="35px"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              dangerouslySetInnerHTML={{ __html: item.htmlCode[0] }}
-            />
+            <Link href={`/emojis/${item.name}`}>
+              <Code
+                p="1"
+                m="1"
+                w="35px"
+                h="35px"
+                cursor="pointer"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                dangerouslySetInnerHTML={{ __html: item.htmlCode[0] }}
+              />
+            </Link>
           </WrapItem>
         ))}
       </Wrap>
