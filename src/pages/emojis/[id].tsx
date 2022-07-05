@@ -46,7 +46,7 @@ export default function Page({
           display="flex"
           alignItems="center"
           justifyContent="center"
-          dangerouslySetInnerHTML={{ __html: htmlCode[0] }}
+          dangerouslySetInnerHTML={{ __html: htmlCode[0]! }}
         />
         <Text display="flex">
           <Text fontWeight="bold" mr="2">
