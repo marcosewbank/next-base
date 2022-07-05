@@ -1,13 +1,9 @@
-import {
-  Badge,
-  Box,
-  Code,
-  Container,
-  Divider,
-  Heading,
-  Text,
-} from "@chakra-ui/react";
+import { Badge, Box, Code, Container, Divider, Text } from "@chakra-ui/react";
 import type { GetStaticPaths, GetStaticProps } from "next";
+
+interface Props {
+  data: EmojiT;
+}
 
 type EmojiT = {
   name: string;
@@ -19,13 +15,8 @@ type EmojiT = {
 };
 
 export default function Page({
-  date,
-  name,
-  htmlCode,
-  unicode,
-  group,
-  category,
-}: EmojiT) {
+  data: { date, name, htmlCode, unicode, group, category },
+}: Props) {
   return (
     <Container pt="5">
       <Text mt="5" mb="6">
@@ -110,14 +101,19 @@ export const getStaticProps: GetStaticProps = async (context) => {
     (emoji: EmojiT) => emoji.name === context.params?.id
   );
 
-  return {
-    props: {
+  const fetchedData =
+    {
       name,
       category,
       group,
       htmlCode,
       unicode,
       date: new Date().toLocaleTimeString("en-US"),
+    } ?? null;
+
+  return {
+    props: {
+      data: fetchedData,
     },
     revalidate: 60,
   };
