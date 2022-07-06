@@ -12,10 +12,11 @@ type EmojiT = {
   htmlCode: string[];
   unicode: string[];
   date: string;
+  emoji: string;
 };
 
 export default function Page({
-  data: { date, name, htmlCode, unicode, group, category },
+  data: { date, name, emoji, unicode, group, category },
 }: Props) {
   return (
     <Container pt="5">
@@ -37,7 +38,7 @@ export default function Page({
           display="flex"
           alignItems="center"
           justifyContent="center"
-          dangerouslySetInnerHTML={{ __html: htmlCode[0]! }}
+          dangerouslySetInnerHTML={{ __html: emoji }}
         />
         <Text display="flex">
           <Text fontWeight="bold" mr="2">
@@ -101,12 +102,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
     (emoji: EmojiT) => emoji.name === context.params?.id
   );
 
+  const emoji = htmlCode[0];
+
   const fetchedData =
     {
       name,
       category,
       group,
-      htmlCode,
+      emoji,
       unicode,
       date: new Date().toLocaleTimeString("en-US"),
     } ?? null;
